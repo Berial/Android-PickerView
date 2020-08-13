@@ -1,1 +1,3 @@
-include ':app', ':pickerview', ':wheelview'
+include ':lib-pickerview'
+include ':app'
+rootProject.name = "PickerView"
