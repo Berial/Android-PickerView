@@ -1,7 +1,61 @@
 
 ## Android-PickerView
 
-[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg)](https://android-arsenal.com/api?level=9) 
+#### 新添功能
+```kotlin
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+        find<Button>(R.id.btn1).setOnClickListener {
+            timePicker {
+                callback = {
+                    toast(it.toString())
+                }
+
+                show()
+            }
+        }
+
+        find<Button>(R.id.btn2).setOnClickListener {
+            optionsPicker<String> {
+
+                callback = { option1, option2, option3 ->
+                    toast(it.toString())
+                }
+
+                setData(listOf("xx"), listOf("xxxx"), listOf("xxxxx"))
+
+                show()
+            }
+        }
+
+        find<Button>(R.id.btn3).setOnClickListener {
+            picker<String> {
+
+                callback = { index, item ->
+                    toast("index: $index, item: $item")
+                }
+
+                data = listOf("xxx", "xxxx", "xxxxx")
+
+
+                show()
+            }
+        }
+    }
+}
+
+```
+
+
+#### 依赖库介绍:
+
+
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg)](https://android-arsenal.com/api?level=9)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Download](https://api.bintray.com/packages/contrarywind/maven/Android-PickerView/images/download.svg) ](https://bintray.com/contrarywind/maven/Android-PickerView/_latestVersion)
 
@@ -21,12 +75,12 @@
 ## 介绍
 
 这是一款仿iOS的PickerView控件，有时间选择器和选项选择器，新版本的详细特性如下：
- 
-——TimePickerView  时间选择器，支持年月日时分，年月日，年月，时分等格式。   
+
+——TimePickerView  时间选择器，支持年月日时分，年月日，年月，时分等格式。
 ——OptionsPickerView  选项选择器，支持一，二，三级选项选择，并且可以设置是否联动 。
 
 * 支持三级联动
-* 设置是否联动 
+* 设置是否联动
 * 设置循环模式
 * 支持自定义布局。
 * 支持item的分隔线设置。
@@ -54,12 +108,12 @@
 ### 使用注意事项
 * 注意：当我们进行设置时间的启始位置时，需要特别注意月份的设定
 * 原因：Calendar组件内部的月份，是从0开始的，即0-11代表1-12月份
-* 错误使用案例： 
+* 错误使用案例：
   startDate.set(2013,1,1);
-  endDate.set(2020,12,1);
+  endDate.set(2020,12,1);
 * 正确使用案例：
   startDate.set(2013,0,1);
-  endDate.set(2020,11,1);
+  endDate.set(2020,11,1);
 
  #### V4.1.9 版本更新说明（2019-10-20）
    - 修复: 农历 day 偶现越界的问题。
@@ -71,7 +125,7 @@
  #### V4.1.8 版本更新说明（2019-4-24）
  -  更新gradle版本， wheelview基础库由 compile 改为 api 依赖，避免gradle 5.0+版本无法引入。
  -  修复 setTextXOffset 赋值问题。
-  
+
  #### V4.1.7 版本更新说明（2019-1-10）
  -  修复 WheelView在初始化时，数据为空导致height=0，造成一直显示不出来的问题。
  -  新增取消按钮的点击事件监听入口。
@@ -79,7 +133,7 @@
  -  废弃setBackgroundId方法， 更新方法命名为 setOutSideColor。
 
 
-#### 更多历史版本详情，请查阅：[更新日志（4.x版本）](https://github.com/Bigkoo/Android-PickerView/wiki/更新日志（4.x版本）) 
+#### 更多历史版本详情，请查阅：[更新日志（4.x版本）](https://github.com/Bigkoo/Android-PickerView/wiki/更新日志（4.x版本）)
 
 #### 方法名与参数请查阅：[方法名与参数说明文档](https://github.com/Bigkoo/Android-PickerView/wiki/%E6%96%B9%E6%B3%95%E5%90%8D%E4%B8%8E%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%EF%BC%883.x%E7%89%88%E6%9C%AC%EF%BC%89)
 
@@ -130,7 +184,7 @@ TimePickerView pvTime = new TimePickerBuilder(MainActivity.this, new OnTimeSelec
             }
         }).build();
  pvOptions.setPicker(options1Items, options2Items, options3Items);
- pvOptions.show(); 
+ pvOptions.show();
 ```
 #### 大功告成~
 
@@ -141,10 +195,10 @@ TimePickerView pvTime = new TimePickerBuilder(MainActivity.this, new OnTimeSelec
  //startDate.set(2013,1,1);
  Calendar endDate = Calendar.getInstance();
  //endDate.set(2020,1,1);
- 
+
   //正确设置方式 原因：注意事项有说明
-  startDate.set(2013,0,1);
-  endDate.set(2020,11,31);
+  startDate.set(2013,0,1);
+  endDate.set(2020,11,31);
 
  pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
