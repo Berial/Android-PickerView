@@ -1,6 +1,10 @@
 
 ## Android-PickerView
 
+```java
+implementation 'com.github.Berial:Android-PickerView:1.0.0'
+```
+
 #### 新添功能
 ```kotlin
 
